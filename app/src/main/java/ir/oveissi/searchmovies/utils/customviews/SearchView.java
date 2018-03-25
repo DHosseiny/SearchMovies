@@ -27,39 +27,40 @@ public class SearchView extends RelativeLayout {
 
     public SearchView(Context context) {
         super(context);
-        initializeViews(context,null);
+        initializeViews(context, null);
     }
 
     public SearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initializeViews(context,attrs);
+        initializeViews(context, attrs);
     }
+
     public SearchView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        initializeViews(context,attrs);
+        initializeViews(context, attrs);
     }
 
     public void setListener(performSearchListener listener) {
         this.listener = listener;
     }
 
-    private void initializeViews(Context context,AttributeSet attrs) {
+    private void initializeViews(Context context, AttributeSet attrs) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.view_search, this);
-        this.mContext=context;
-        imClearTextBtn=(ImageButton)findViewById(R.id.imClearTextBtn);
-        etTerms=(EditText)findViewById(R.id.etTerms);
+        this.mContext = context;
+        imClearTextBtn = findViewById(R.id.imClearTextBtn);
+        etTerms = findViewById(R.id.etTerms);
 
 
         etTerms.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    if(((Activity)mContext).getCurrentFocus()!=null && ((Activity)mContext).getCurrentFocus() instanceof EditText){
-                        InputMethodManager imm = (InputMethodManager)mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (((Activity) mContext).getCurrentFocus() != null && ((Activity) mContext).getCurrentFocus() instanceof EditText) {
+                        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(etTerms.getWindowToken(), 0);
                     }
-                    if(listener!=null)
+                    if (listener != null)
                         listener.performSearch(etTerms.getText().toString());
                     return true;
                 }
@@ -71,13 +72,15 @@ public class SearchView extends RelativeLayout {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
+
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 imClearTextBtn.setVisibility(View.VISIBLE);
             }
+
             public void afterTextChanged(Editable s) {
                 if (s.length() == 0) {
                     imClearTextBtn.setVisibility(View.GONE);
-                } else{
+                } else {
                     imClearTextBtn.setVisibility(View.VISIBLE);
                 }
             }
@@ -90,23 +93,20 @@ public class SearchView extends RelativeLayout {
         });
 
 
-
     }
 
 
-    public String getValue()
-    {
+    public String getValue() {
         return etTerms.getText().toString();
     }
 
 
-    public void setText(String text)
-    {
+    public void setText(String text) {
         etTerms.setText(text);
     }
-    public interface performSearchListener
-    {
-        public void performSearch(String terms);
+
+    public interface performSearchListener {
+        void performSearch(String terms);
     }
-    
+
 }

@@ -19,8 +19,8 @@ public class ClientModule {
     @Singleton
     @Provides
     public static OkHttpClient provideOkHttpClient(HttpLoggingInterceptor loggingInterceptor,
-                                            @Named("networkTimeoutInSeconds") int networkTimeoutInSeconds,
-                                            @Named("isDebug") boolean isDebug) {
+                                                   @Named("networkTimeoutInSeconds") int networkTimeoutInSeconds,
+                                                   @Named("isDebug") boolean isDebug) {
 
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(networkTimeoutInSeconds, TimeUnit.SECONDS)

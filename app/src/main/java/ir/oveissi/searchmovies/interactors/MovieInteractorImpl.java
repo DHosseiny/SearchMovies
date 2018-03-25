@@ -42,7 +42,7 @@ public class MovieInteractorImpl implements MovieInteractor {
 
     @Override
     public Observable<List<Movie>> getMoviesByTitle(String title, Integer page) {
-        return this.searchMoviesApiService.getMoviesByTitle(title,page)
+        return this.searchMoviesApiService.getMoviesByTitle(title, page)
                 .map(new Function<TmpMovies, List<Movie>>() {
                     @Override
                     public List<Movie> apply(TmpMovies tmpMovies) {
@@ -54,7 +54,7 @@ public class MovieInteractorImpl implements MovieInteractor {
     }
 
     @Override
-    public Observable<Movie> getMovieByID( String movieId) {
+    public Observable<Movie> getMovieByID(String movieId) {
         return this.searchMoviesApiService.getMovieById(movieId)
                 .subscribeOn(scheduler.backgroundThread())
                 .observeOn(scheduler.mainThread());

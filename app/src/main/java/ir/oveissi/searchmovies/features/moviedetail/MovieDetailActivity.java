@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
-import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,30 +22,23 @@ import ir.oveissi.searchmovies.pojo.Movie;
 public class MovieDetailActivity extends AppCompatActivity implements MovieDetailContract.View {
 
 
-    private String movie_id;
-    private String image_path;
-
-
+    @Inject
+    public MovieDetailContract.Presenter mPresenter;
     @BindView(R.id.tvOverview)
     TextView tvOverview;
-
     @BindView(R.id.imPoster)
     ImageView imPoster;
-
     @BindView(R.id.myToolbar)
     Toolbar toolbar;
-
     @BindView(R.id.textview_product_detail_toolbar_title)
     TextView title;
+    private String movie_id;
+    private String image_path;
 
     @OnClick(R.id.imageview_activity_movie_detail_back)
     void performBack() {
         onBackPressed();
     }
-
-    @Inject
-    public MovieDetailContract.Presenter mPresenter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

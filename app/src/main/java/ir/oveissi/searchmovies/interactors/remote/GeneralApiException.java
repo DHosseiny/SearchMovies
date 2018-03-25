@@ -6,23 +6,26 @@ import retrofit2.Response;
  * Created by abbas on 6/15/17.
  */
 
-public class GeneralApiException extends Exception{
+public class GeneralApiException extends Exception {
+    private final transient Response<?> response;
     public String message;
     public String errors;
-
-    private final transient Response<?> response;
 
 
     public GeneralApiException(Response<?> response) {
         this.response = response;
     }
 
-    /** HTTP status code. */
+    /**
+     * HTTP status code.
+     */
     public int code() {
         return response.code();
     }
 
-    /** HTTP status message. */
+    /**
+     * HTTP status message.
+     */
     public String message() {
         return message;
     }

@@ -24,7 +24,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import ir.oveissi.searchmovies.R;
 import ir.oveissi.searchmovies.SearchMovieApplication;
@@ -40,26 +39,17 @@ public class MovieSearchActivity extends AppCompatActivity implements MovieSearc
 
     @Inject
     public MovieSearchPresenter mPresenter;
-
-    private MovieSearchAdapter mListAdapter;
-
+    public String title = "";
+    public int current_page = 1;
     @BindView(R.id.rvMovies)
     EndlessLinearLayoutRecyclerview rvMovies;
-
     @BindView(R.id.search_view)
     MaterialSearchView searchView;
-
     @BindView(R.id.loadinglayout)
     LoadingLayout loadinglayout;
-
-    public String title = "";
-
-
     @BindView(R.id.myToolbar)
     Toolbar toolbar;
-
-
-    public int current_page = 1;
+    private MovieSearchAdapter mListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,7 +15,7 @@ import ir.oveissi.searchmovies.features.moviesearch.MovieSearchPresenterModule;
 
 
 @Singleton
-@Component( modules = {
+@Component(modules = {
         AndroidModule.class,
         ApplicationModule.class,
         ApiModule.class,
@@ -25,14 +25,16 @@ import ir.oveissi.searchmovies.features.moviesearch.MovieSearchPresenterModule;
 public interface ApplicationComponent {
 
     MovieDetailComponent plus(MovieDetailPresenterModule module);
+
     MovieSearchComponent plus(MovieSearchPresenterModule module);
 
 
     @Component.Builder
-    interface Builder
-    {
+    interface Builder {
         ApplicationComponent build();
-        @BindsInstance Builder application(SearchMovieApplication application);
+
+        @BindsInstance
+        Builder application(SearchMovieApplication application);
     }
 
 }

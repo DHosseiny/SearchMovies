@@ -24,25 +24,15 @@ public class LoadingLayout extends RelativeLayout {
     //public  ProgressBar pb;
     public View vError;
     public View mainLayout;
-    public String mError="";
+    public String mError = "";
+    String whereShowLoading = "";
     private ProgressWheel wheel;
-
-
     private onErrorClickListener listener;
-    private int mState=2;
-
-    public void setListener(onErrorClickListener listener) {
-        this.listener = listener;
-    }
-
-    public interface onErrorClickListener
-    {
-        public void onClick();
-    }
+    private int mState = 2;
 
     public LoadingLayout(Context context) {
         super(context);
-        initializeViews(context,null);
+        initializeViews(context, null);
     }
 
     public LoadingLayout(Context context, AttributeSet attrs) {
@@ -55,10 +45,12 @@ public class LoadingLayout extends RelativeLayout {
         initializeViews(context, attrs);
     }
 
+    public void setListener(onErrorClickListener listener) {
+        this.listener = listener;
+    }
 
-    String whereShowLoading="";
-    private void initializeViews(Context context,AttributeSet attrs) {
-        this.mContext=context;
+    private void initializeViews(Context context, AttributeSet attrs) {
+        this.mContext = context;
 //            if(attrs!=null)
 //            {
 //                TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LoadingLayout, 0, 0);
@@ -71,17 +63,17 @@ public class LoadingLayout extends RelativeLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        vError=inflater.inflate(R.layout.row_error,null);
+        vError = inflater.inflate(R.layout.row_error, null);
         vError.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(listener!=null)
+                if (listener != null)
                     listener.onClick();
             }
         });
 
 
-        mainLayout=getChildAt(0);
+        mainLayout = getChildAt(0);
 
         wheel = new ProgressWheel(mContext);
         wheel.setBarColor(mContext.getResources().getColor(R.color.colorPrimary));
@@ -89,15 +81,12 @@ public class LoadingLayout extends RelativeLayout {
         wheel.setCircleRadius(Utility.dpToPx(60));
         wheel.setBarWidth(Utility.dpToPx(4));
         wheel.setSpinSpeed(.5f);
-        LayoutParams lp=new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        if(whereShowLoading!=null&&whereShowLoading.equals("top"))
-        {
+        if (whereShowLoading != null && whereShowLoading.equals("top")) {
             lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 
-        }
-        else
-        {
+        } else {
             lp.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
         }
@@ -119,17 +108,13 @@ public class LoadingLayout extends RelativeLayout {
         return mState;
     }
 
-    public void setState(int mState)
-    {
+    public void setState(int mState) {
         this.mState = mState;
-        if(mState==STATE_LOADING)
-        {
+        if (mState == STATE_LOADING) {
             mainLayout.setVisibility(GONE);
             wheel.setVisibility(VISIBLE);
             vError.setVisibility(GONE);
-        }
-        else if(mState==STATE_SHOW_DATA)
-        {
+        } else if (mState == STATE_SHOW_DATA) {
             wheel.setVisibility(GONE);
             vError.setVisibility(GONE);
 
@@ -138,15 +123,12 @@ public class LoadingLayout extends RelativeLayout {
             mainLayout.animate()
                     .alpha(1)
                     .setInterpolator(new FastOutLinearInInterpolator())
-                    .setDuration(500)  ;
-            if(isInEditMode())
-            {
+                    .setDuration(500);
+            if (isInEditMode()) {
                 mainLayout.setAlpha(1);
 
             }
-        }
-        else if(mState==STATE_SHOW_Error)
-        {
+        } else if (mState == STATE_SHOW_Error) {
             mainLayout.setVisibility(GONE);
             wheel.setVisibility(GONE);
             vError.setVisibility(VISIBLE);
@@ -155,13 +137,16 @@ public class LoadingLayout extends RelativeLayout {
 
     }
 
-
-    public void setError(String mError)
-    {
-        this.mError=mError;
-        TextView tvError=(TextView) vError.findViewById(R.id.tvError);
+    public void setError(String mError) {
+        this.mError = mError;
+        TextView tvError = vError.findViewById(R.id.tvError);
         tvError.setText(mError);
         setState(STATE_SHOW_Error);
+    }
+
+
+    public interface onErrorClickListener {
+        void onClick();
     }
 
 }

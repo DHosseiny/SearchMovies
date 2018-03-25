@@ -16,7 +16,7 @@ public class ApiClient {
 
 
     public static ApiInterface getClient() {
-        if (retrofit==null) {
+        if (retrofit == null) {
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
             HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();

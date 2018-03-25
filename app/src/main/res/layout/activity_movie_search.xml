@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/toolbar_container"
@@ -12,11 +12,11 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/myToolbar"
-            app:titleTextColor="#FFFF"
-            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            android:layout_height="wrap_content"/>
+            app:titleTextColor="#FFFF" />
 
         <com.miguelcatalan.materialsearchview.MaterialSearchView
             android:id="@+id/search_view"
@@ -26,13 +26,15 @@
 
 
     <View
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
     <ir.oveissi.searchmovies.utils.customviews.LoadingLayout
         android:id="@+id/loadinglayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ir.oveissi.searchmovies.utils.customviews.EndlessLinearLayoutRecyclerview
             android:id="@+id/rvMovies"
             android:layout_width="match_parent"

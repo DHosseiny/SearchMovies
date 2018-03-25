@@ -28,7 +28,7 @@ public interface MovieSearchContract {
 
         void onSearchButtonClick(String terms);
 
-        void onLoadMoviesByTitle(String title,int page);
+        void onLoadMoviesByTitle(String title, int page);
 
     }
 }

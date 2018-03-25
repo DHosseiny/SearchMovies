@@ -12,11 +12,11 @@ import retrofit2.http.Query;
  */
 public interface ApiInterface {
 
-        //http://moviesapi.ir/api/v1/movies?q=[QUERY]
-        @GET("movies")
-        Observable<TmpMovies> getMoviesByTitle(@Query("q") String query, @Query("page") Integer page);
+    //http://moviesapi.ir/api/v1/movies?q=[QUERY]
+    @GET("movies")
+    Observable<TmpMovies> getMoviesByTitle(@Query("q") String query, @Query("page") Integer page);
 
-        //http://moviesapi.ir/api/v1/movies/{ID}
-        @GET("movies/{id}")
-        Observable<Movie> getMovieById(@Path("id") String id);
+    //http://moviesapi.ir/api/v1/movies/{ID}
+    @GET("movies/{id}")
+    Observable<Movie> getMovieById(@Path("id") String id);
 }

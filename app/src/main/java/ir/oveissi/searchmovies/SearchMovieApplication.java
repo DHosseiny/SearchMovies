@@ -11,6 +11,12 @@ import ir.oveissi.searchmovies.di.DaggerApplicationComponent;
 
 public class SearchMovieApplication extends Application {
 
+    private static ApplicationComponent component;
+
+    public static ApplicationComponent getComponent() {
+        return component;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -19,12 +25,6 @@ public class SearchMovieApplication extends Application {
                 .build();
 
 
-    }
-
-    private static ApplicationComponent component;
-
-    public static ApplicationComponent getComponent() {
-        return component;
     }
 
 }

@@ -16,7 +16,7 @@ import retrofit2.HttpException;
 /**
  * Created by abbas on 7/18/16.
  */
-public class SearchMoviesApiServiceImpl implements SearchMoviesApiService{
+public class SearchMoviesApiServiceImpl implements SearchMoviesApiService {
     private final ApiInterface api;
 
     public SearchMoviesApiServiceImpl(ApiInterface api) {
@@ -24,8 +24,8 @@ public class SearchMoviesApiServiceImpl implements SearchMoviesApiService{
     }
 
     @Override
-    public Observable<TmpMovies> getMoviesByTitle(String query,Integer page) {
-        return api.getMoviesByTitle(query,page)
+    public Observable<TmpMovies> getMoviesByTitle(String query, Integer page) {
+        return api.getMoviesByTitle(query, page)
                 .compose(this.parseHttpErrors());
     }
 
@@ -40,15 +40,15 @@ public class SearchMoviesApiServiceImpl implements SearchMoviesApiService{
         return observable -> observable.onErrorResumeNext((Function<Throwable, ObservableSource<? extends T>>) throwable -> {
             if (throwable instanceof HttpException) {
 
-                Gson gson=new Gson();
-                GeneralApiException generalApiException=null;
+                Gson gson = new Gson();
+                GeneralApiException generalApiException = null;
                 try {
-                    generalApiException=gson.fromJson(((HttpException) throwable).response().errorBody().string(),GeneralApiException.class);
+                    generalApiException = gson.fromJson(((HttpException) throwable).response().errorBody().string(), GeneralApiException.class);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                if(generalApiException==null)
+                if (generalApiException == null)
                     return Observable.error(throwable);
                 else
                     return Observable.error(generalApiException);

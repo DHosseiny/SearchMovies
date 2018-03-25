@@ -33,10 +33,10 @@ import retrofit2.HttpException;
 public class MovieSearchPresenter implements MovieSearchContract.Presenter {
 
 
+    private static final String TAG = "MovieSearchPresenter";
+    private final MovieInteractor mMovieInteractor;
     private MovieSearchContract.View viewLayer;
     private CompositeDisposable compositeDisposable;
-    private final MovieInteractor mMovieInteractor;
-    private static final String TAG="MovieSearchPresenter";
 
     @Inject
     public MovieSearchPresenter(MovieInteractor mMovieInteractor) {
@@ -45,9 +45,9 @@ public class MovieSearchPresenter implements MovieSearchContract.Presenter {
     }
 
     @Override
-    public void onLoadMoviesByTitle(String title,int page) {
-        Disposable disposable=
-                mMovieInteractor.getMoviesByTitle(title,page)
+    public void onLoadMoviesByTitle(String title, int page) {
+        Disposable disposable =
+                mMovieInteractor.getMoviesByTitle(title, page)
                         .subscribeWith(new DisposableObserver<List<Movie>>() {
                             @Override
                             public void onComplete() {
@@ -57,14 +57,10 @@ public class MovieSearchPresenter implements MovieSearchContract.Presenter {
                             @Override
                             public void onError(Throwable e) {
                                 if (e instanceof HttpException) {
-                                    Log.d(TAG, "onError StatusCode: "+((HttpException) e).code());
-                                }
-                                else if(e instanceof GeneralApiException)
-                                {
-                                    Log.d(TAG, "onError message: "+((GeneralApiException) e).message);
-                                }
-                                else
-                                {
+                                    Log.d(TAG, "onError StatusCode: " + ((HttpException) e).code());
+                                } else if (e instanceof GeneralApiException) {
+                                    Log.d(TAG, "onError message: " + ((GeneralApiException) e).message);
+                                } else {
                                     Log.d(TAG, "onError");
                                 }
                                 viewLayer.showToast("خطا رخ داد.");
@@ -86,7 +82,7 @@ public class MovieSearchPresenter implements MovieSearchContract.Presenter {
 
         viewLayer.showLoadingForMovies();
         viewLayer.clearMovies();
-        onLoadMoviesByTitle(terms,1);
+        onLoadMoviesByTitle(terms, 1);
     }
 
 
@@ -102,6 +98,6 @@ public class MovieSearchPresenter implements MovieSearchContract.Presenter {
 
     @Override
     public void onViewAttached(MovieSearchContract.View view) {
-        viewLayer=view;
+        viewLayer = view;
     }
 }
