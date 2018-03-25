@@ -67,7 +67,6 @@ public class MovieDetailPresenter implements MovieDetailContract.Presenter {
                             public void onNext(Movie movie) {
                                 Log.d(TAG, "onNext");
                                 viewLayer.showMovieDetail(movie);
-                                viewLayer.showMovieDetail(movie);
                             }
                         });
         compositeDisposable.add(disposable);

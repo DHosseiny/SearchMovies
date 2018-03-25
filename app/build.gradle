@@ -14,6 +14,7 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
