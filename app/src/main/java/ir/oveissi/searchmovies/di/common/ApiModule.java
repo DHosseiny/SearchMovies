@@ -2,6 +2,7 @@ package ir.oveissi.searchmovies.di.common;
 
 
 import com.google.gson.Gson;
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -50,8 +51,8 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    public static CallAdapter.Factory provideRxJavaCallAdapterFactory() {
-        return RxJava2CallAdapterFactory.create();
+    public static CallAdapter.Factory provideCallAdapterFactory() {
+        return CoroutineCallAdapterFactory.create();
     }
 
     @Provides
