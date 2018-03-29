@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package ir.oveissi.searchmovies.interactors;
+package ir.oveissi.searchmovies.interactors
 
-import java.util.List;
-
-import io.reactivex.Observable;
-import ir.oveissi.searchmovies.pojo.Movie;
+import ir.oveissi.searchmovies.pojo.Movie
 
 /**
  * Main entry point for accessing tasks data.
- * <p>
+ *
+ *
  */
-public interface MovieInteractor {
+interface MovieInteractor {
 
-    Observable<List<Movie>> getMoviesByTitle(String query, Integer page);
+    suspend fun getMoviesByTitle(title: String, page: Int?): List<Movie>
 
-    Observable<Movie> getMovieByID(String id);
+    suspend fun getMovieByID(id: String): Movie
 
 }

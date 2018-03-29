@@ -8,8 +8,8 @@ import dagger.Module;
 import dagger.Provides;
 import ir.oveissi.searchmovies.BuildConfig;
 import ir.oveissi.searchmovies.utils.Constants;
-import ir.oveissi.searchmovies.utils.SchedulerProvider;
-import ir.oveissi.searchmovies.utils.SchedulerProviderImpl;
+import ir.oveissi.searchmovies.utils.DispatcherProvider;
+import ir.oveissi.searchmovies.utils.DispatcherProviderImpl;
 
 /**
  * Created by abbas on 6/25/16.
@@ -41,6 +41,6 @@ public abstract class ApplicationModule {
 
     @Binds
     @Singleton
-    public abstract SchedulerProvider provideAppScheduler(SchedulerProviderImpl schedulerProvider);
+    public abstract DispatcherProvider provideAppDispatcher(DispatcherProviderImpl schedulerProvider);
 
 }

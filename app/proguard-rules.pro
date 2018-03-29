@@ -110,5 +110,8 @@
 
 -dontwarn dagger.**
 
-
+# kotlinx-coroutines
+-keepclassmembernames class kotlinx.** {
+    volatile <fields>;
+}
 

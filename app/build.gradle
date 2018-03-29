@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -50,15 +52,11 @@ dependencies {
 
     compile rootProject.ext.libraries.kotlinStdlib
 
-    compile rootProject.ext.libraries.rxjava
-    compile rootProject.ext.libraries.rxandroid
-    compile rootProject.ext.libraries.rxbinding
-
     compile rootProject.ext.libraries.kotlinxCoroutines
-    compile rootProject.ext.libraries.kotlinxCoroutinesRx2Support
+    compile rootProject.ext.libraries.kotlinxCoroutinesAndroid
 
     compile rootProject.ext.libraries.butterknife
-    annotationProcessor rootProject.ext.libraries.butterknifeCompiler
+    kapt rootProject.ext.libraries.butterknifeCompiler
 
     compile rootProject.ext.libraries.retrofit
     compile rootProject.ext.libraries.retrofitConverter
@@ -70,7 +68,7 @@ dependencies {
     compile rootProject.ext.libraries.picasso
 
     compile rootProject.ext.libraries.dagger
-    annotationProcessor rootProject.ext.libraries.daggerCompiler
+    kapt rootProject.ext.libraries.daggerCompiler
 
     compile rootProject.ext.libraries.materialProgress
 
